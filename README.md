@@ -1,6 +1,8 @@
 # Tata Steel valuation model
 
-My three-statement model and DCF valuation of Tata Steel (NSE: TATASTEEL), built from the company's annual reports for FY23 to FY26 and its H1 FY27 results. It forecasts to FY31, values the company on free cash flow, and checks the answer against peer multiples.
+My three-statement model, DCF valuation and credit analysis of Tata Steel (NSE: TATASTEEL), built from the company's annual reports for FY23 to FY26 and its H1 FY27 results. It forecasts to FY31, values the company on free cash flow, checks the answer against peer multiples, and asks how much debt stress a bad year for steel prices would cause.
+
+The short version is in the [two-page note](Tata_Steel_Note.pdf); the workings are in the [Excel model](Tata_Steel_DCF_Valuation_Model.xlsx).
 
 *This is a personal learning project, not investment research. The values here are what the model gives under my assumptions; they are not a target price or a buy/sell view.*
 
@@ -16,6 +18,19 @@ A few things stood out while building it:
 - **The terminal value assumption matters more than I expected.** Valuing FY31 at a 6.5x exit multiple gives about ₹191, compared with ₹144 from the growth formula. The difference is mostly reinvestment. With 4.5% growth and a 12% return on new capital, the growth formula assumes the business keeps putting back 37.5% of its profit, while the exit multiple implies something closer to maintenance capex.
 - **The APL Apollo deal landed while I was finishing this.** On 23 November Tata Steel agreed to buy 26.38% of APL Apollo Tubes for ₹15,510 crore, announced an open offer for another 26%, and agreed to sell its own tubes business and Tata Steel Colors to APL Apollo for up to ₹28,000 crore. The stock fell from ₹178 to ₹159.30 in three sessions. Since the deal still needs approvals, I valued the company as it stood on 30 September and put the deal on a separate sheet that shows how it moves net debt.
 
+## Can it carry its debt in a bad year?
+
+Right now, yes. Net debt is 2.4x EBITDA over the last twelve months, and my FY26 numbers line up with the rating agencies: 2.37x net debt / EBITDA against 2.41x from CARE and 2.4x from ICRA, and interest cover of 4.79x, exactly CARE's figure. In the base case, leverage falls to about 1.5x by FY28 as debt is repaid.
+
+The stress test is harsher. If steel prices were 10% lower in FY28 and costs didn't move, EBITDA would drop from about ₹47,200 crore to ₹19,800 crore. Net debt / EBITDA would jump from 1.5x to 4.6x and interest cover would fall from 6.4x to 2.7x. That is above the 3.0x level where CARE says a downgrade could follow, and a price fall of only about 6.8% would get there. Scheduled repayments would still be covered (1.9x), so it is a leverage problem rather than a cash crunch. A real downturn would probably be milder because raw material prices usually fall with steel prices, but it shows how little room there is.
+
+| | FY26 actual | FY28E base | FY28E, prices 10% lower |
+|---|---|---|---|
+| Net debt / EBITDA | 2.4x | 1.5x | 4.6x |
+| Interest cover | 4.8x | 6.4x | 2.7x |
+| Operating cash flow / debt | 38% | 43% | 22% |
+| Repayment cover | 2.2x | 2.9x | 1.9x |
+
 ## How the model is put together
 
 The workbook starts with a Cover sheet that summarises the outputs and shows whether all the checks pass.
@@ -27,7 +42,8 @@ The workbook starts with a Cover sheet that summarises the outputs and shows whe
 5. **DCF**: free cash flow to the firm, mid-period discounting to 30 September 2026, a Gordon growth terminal value at 4.5%, and an exit-multiple cross-check.
 6. **Scenarios and Sensitivity**: all three cases side by side, plus tables that move WACC, terminal growth and EBITDA margin.
 7. **Comps**: EV/EBITDA, P/E and P/B for JSW Steel, Jindal Steel and SAIL. I left P/E out of the valuation because JSW's trailing profit includes large one-off gains.
-8. **APL Apollo deal, Football Field, Checks, Sources**: the pending transaction, the summary chart, the integrity checks, and where every number came from.
+8. **Credit**: net debt / EBITDA, interest cover, cash flow to debt and repayment cover for each year, using the actual debt maturity schedule from the FY26 annual report. It also has an India-only view (the standalone company), the 10% price downside, and a side-by-side comparison with CARE's and ICRA's published ratios, with a line on why each one differs.
+9. **APL Apollo deal, Football Field, Checks, Sources**: the pending transaction, the summary chart, the integrity checks, and where every number came from.
 
 ### Main assumptions (base case)
 
@@ -42,13 +58,13 @@ I used a 30% tax rate rather than the 25.17% Indian rate because the UK losses d
 
 ## Sources
 
-Everything is public: Tata Steel's Integrated Reports for FY24, FY25 and FY26 (consolidated statements), the Q2 FY27 results filed on 7 November 2026, Screener.in for share prices and peer data, Trading Economics for the bond yield, Aswath Damodaran's country risk data (January 2026) and CARE Ratings' July 2026 rating rationale. The Sources sheet has the links. I didn't use any employer data or paid databases.
+Everything is public: Tata Steel's Integrated Reports for FY24, FY25 and FY26 (consolidated statements), the Q2 FY27 results filed on 7 November 2026, Screener.in for share prices and peer data, Trading Economics for the bond yield, Aswath Damodaran's country risk data (January 2026), and the CARE (July 2026) and ICRA (June 2026) rating reports. The Sources sheet has the links. I didn't use any employer data or paid databases.
 
 I used an AI assistant to help pull numbers out of the PDFs and to speed up building the spreadsheet. I checked the figures against the filings, and the assumptions and conclusions are my own.
 
 ## What I'd improve next
 
-- Add a credit view (leverage, interest cover, repayment capacity) and a downside case with lower steel prices
 - Split India into volume and price per tonne instead of using EBITDA growth for both
 - Add more peers, including international ones, since only three Indian peers is a thin set
 - Update the model once the APL Apollo deal closes and the open offer result is known
+- Get the standalone debt maturity schedule so the India view can include repayment cover too
